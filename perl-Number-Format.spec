@@ -4,14 +4,14 @@
 #
 Name     : perl-Number-Format
 Version  : 1.75
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/W/WR/WRW/Number-Format-1.75.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/W/WR/WRW/Number-Format-1.75.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnumber-format-perl/libnumber-format-perl_1.75-1.debian.tar.xz
 Summary  : 'Perl extension for formatting numbers'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
-Requires: perl-Number-Format-man
+BuildRequires : buildreq-cpan
 
 %description
 Number::Format - Convert numbers to strings with pretty formatting
@@ -25,19 +25,20 @@ decimal point.  The characters used for the decimal point and the
 thousands separator come from the locale information or can be
 specified by the user.
 
-%package man
-Summary: man components for the perl-Number-Format package.
-Group: Default
+%package dev
+Summary: dev components for the perl-Number-Format package.
+Group: Development
+Provides: perl-Number-Format-devel = %{version}-%{release}
 
-%description man
-man components for the perl-Number-Format package.
+%description dev
+dev components for the perl-Number-Format package.
 
 
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Number-Format-1.75
-mkdir -p %{_topdir}/BUILD/Number-Format-1.75/deblicense/
+cd ..
+%setup -q -T -D -n Number-Format-1.75 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Number-Format-1.75/deblicense/
 
 %build
@@ -63,9 +64,9 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -74,8 +75,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Number/Format.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Number/Format.pm
 
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Number::Format.3
