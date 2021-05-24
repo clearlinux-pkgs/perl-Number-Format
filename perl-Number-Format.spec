@@ -4,7 +4,7 @@
 #
 Name     : perl-Number-Format
 Version  : 1.75
-Release  : 15
+Release  : 16
 URL      : https://cpan.metacpan.org/authors/id/W/WR/WRW/Number-Format-1.75.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/W/WR/WRW/Number-Format-1.75.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnumber-format-perl/libnumber-format-perl_1.75-1.debian.tar.xz
@@ -94,4 +94,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.32.1/Number/Format.pm
+/usr/lib/perl5/vendor_perl/5.34.0/Number/Format.pm
