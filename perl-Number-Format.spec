@@ -4,7 +4,7 @@
 #
 Name     : perl-Number-Format
 Version  : 1.75
-Release  : 17
+Release  : 18
 URL      : https://cpan.metacpan.org/authors/id/W/WR/WRW/Number-Format-1.75.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/W/WR/WRW/Number-Format-1.75.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnumber-format-perl/libnumber-format-perl_1.75-1.debian.tar.xz
